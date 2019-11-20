@@ -1,0 +1,131 @@
+/* MODALS */
+
+.modal-video {
+    .modal-header {
+        padding: 15px 15px 10px;
+        border: none;
+    }
+    .modal-content {
+        border: none;
+        border-radius: 0;
+        box-shadow: 0px 20px 80px -10px rgba(0, 0, 0, 0.5);
+    }
+    .modal-body {
+        padding: 0;
+    }
+    .video-container {
+        position:relative;
+        padding-bottom: 56.2%;
+        height:0;
+        overflow:hidden;
+    }
+    .video-container iframe, .video-container object, .video-container embed {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+}
+
+.loginmodal{
+
+        .modal-dialog {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            
+            small{
+                display: inline-block;
+                margin-top: 25px;
+            } 
+            
+            
+            .modal-header {
+                border-bottom: 0;
+
+                button{
+                    z-index: 99999;
+                    position: relative;
+                }
+                
+                i{
+                    font-size: 45px;
+                }
+            }
+            
+            .modal-footer{
+                border-top: 0;
+                text-align: center;
+            }
+            
+            .modal-content{
+                height: 100%;
+                border-radius: 0;
+                background: $extra-color2;
+                color:  lighten($extra-color2, 15%);
+                
+                .modal-body{
+                    max-width: 350px;
+                    margin: auto;
+                    @include vertical-align();
+                    
+                }
+                
+                img{
+                    width: 150px;
+                    margin: 30px auto;
+                    display: block;
+                    
+                }
+                
+                
+                form{
+                    
+                    .form-control{
+                        background: darken($extra-color2, 15%);
+                        border: 0;
+                        color:  lighten($extra-color2, 15%);
+                    }
+
+                    ::-webkit-input-placeholder { /* WebKit browsers */
+                        color: lighten($extra-color2, 15%);
+                    }
+                    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                        color: lighten($extra-color2, 15%);
+                    }
+                    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                        color: lighten($extra-color2, 15%);
+                    }
+                    :-ms-input-placeholder { /* Internet Explorer 10+ */
+                        color: lighten($extra-color2, 15%);
+                    }
+                                
+                    .form-info{
+                        text-align: center;
+                    }
+                    
+                    a{
+                        color: lighten($extra-color2, 15%);
+                    }
+                }
+                
+            }
+        }
+
+}
+
+#nwitch-modal {
+  button.close {
+    position: absolute;
+    z-index: 10;
+    right: 15px;
+    top: 15px;
+    color: #fff;
+    opacity: 1;
+    text-shadow: none;
+  }
+  img {
+    max-width: 100%;
+  }
+}

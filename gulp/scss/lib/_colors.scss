@@ -1,0 +1,67 @@
+$main-color: #000;
+
+.main-color{
+    color: $main-color;
+}
+
+$second-color: #C2185B;
+$extra-color1: #FF4081 ;
+$extra-color2: #673AB7  ;
+$extra-color3: #03A9F4  ;
+$yellow: #fca317;
+$white: #fff;
+$black: #000;
+$lighter-grey: #edeff0;
+$light-grey: #F8F8F9;
+$grey-blue: #d1dde8;
+$grey: #5B5B5B;
+$medium-grey: #1b1e23;
+$dark-grey: #232323;
+
+$text-color: #707070;
+
+/* COLORS */
+
+$lightblue: #03a9f4;
+$turquoise: #1aca82;
+$pink: #ff4081;
+$purple: #673ab7;
+$green: #22d04f;
+$red: #e8412e;
+
+.blue  { background: $extra-color3!important; }
+.pink { background: $extra-color1!important; }
+.violet  { background: $extra-color2!important; }
+.red     { background: $main-color!important; }
+.yellow { background: $yellow!important; } 
+.turquoise { background: $turquoise!important; } 
+
+.text-primary { color: $main-color!important; }
+.text-black { color: $black!important; }
+.text-blue { color: $lightblue!important; }
+.text-yellow { color: $yellow!important; }
+.text-turquoise { color: $turquoise!important; }
+.text-pink { color: $pink!important; }
+.text-purple { color: $purple!important; }
+
+.bg-grey{
+    background: $light-grey;
+}
+.bg-darkgrey{
+    background: $dark-grey;
+}
+.bg-main{
+    background: $main-color;
+}
+
+.bg-black {
+    background: $black;
+}
+
+.fill-main { fill: $main-color; }
+.fill-grey-dark { fill: $dark-grey; }
+
+//----------------
+.text-white{
+    color: #fff !important;
+}

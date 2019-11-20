@@ -1,0 +1,12 @@
+
+.login-section {
+  width: 300px;
+  max-width: 100%;
+
+  @include breakpoint(sm) {
+    width: 500px;
+  }
+  @include breakpoint(lg) {
+    width: 500px;
+  }
+}

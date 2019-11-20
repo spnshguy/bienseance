@@ -1,0 +1,32 @@
+//LIB
+@import "lib/mixins";
+@import "lib/responsive";
+@import "lib/colors";
+@import "lib/fonts";
+@import "lib/helpers";
+@import "lib/animations";
+@import "lib/buttons";
+@import "lib/positioning";
+@import "lib/widgets";
+
+//MODULES
+@import "modules/hero";
+@import "modules/modals";
+@import "modules/header";
+@import "modules/sidebar";
+@import "modules/footer";
+@import "modules/cards";
+@import "modules/panels";
+
+//PAGES
+@import "pages/pages";
+@import "pages/home";
+@import "pages/about";
+@import "pages/login";
+@import "pages/404";
+@import "pages/error";
+
+
+
+
+

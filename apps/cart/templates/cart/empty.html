@@ -1,0 +1,16 @@
+{% load i18n %}
+{% block content %}
+    <main>
+        <section class="shopping-cart empty">
+            <div class="title">
+                <h1>{% trans 'Votre panier est vide' %}</h1>
+            </div>
+            <div class="content">
+                {% trans 'Avant de passer à la caisse, vous devez ajouter des produits à votre panier.' %}
+            </div>
+            <div class="back-to-shop">
+                <a href="{% url 'products:list' %}" class="btn btn-black-outline">{% trans 'Aller à la boutique' %}</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

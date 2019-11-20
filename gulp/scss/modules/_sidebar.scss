@@ -1,0 +1,62 @@
+.sidebar {
+    position: fixed;
+    top:0;
+    right: 0;
+    width: 80px;
+    height: 100%;
+    background-color: transparent;
+    z-index: 9;
+    display:none;
+    @include breakpoint(sm) {
+        display:block;
+    }
+    .sidebar-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 65%;
+        min-height: 400px;
+        margin-top: 70px;
+
+
+        .big-icon {
+            font-size: 20px;
+        }
+
+        a {
+            color: $black;
+        }
+        .magazine-link {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); //For IE support
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            font-family: "Karla", sans-serif;
+            .bar {
+                background: #000;
+                height: 20px;
+                width: 1px;
+                margin: 0 10px;
+            }
+
+        }
+        span {
+            &:last-child {
+                margin-right: 20px;
+            }
+        }
+        .social-networks {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            margin-top: 75px;
+            font-size: 18px;
+        }
+    }
+}

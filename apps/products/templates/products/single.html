@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles cms_tags crispy_forms_filters %}
+{% block content %}
+    <main>
+        <section class="product-content-section flex-dbl-row">
+            <div class="product-col-left">
+                <div class="product-image-container">
+                    {% for image in product.product_images.all %}
+                        <div class="product-image">
+                            <img src="{{ image.image.url }}" alt="{{ image.image.name }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="product-col-right">
+                <div class="product-header">
+                    <h1>{{ product.title }}</h1>
+                    <div class="designer">
+                        <a href="{% url 'products:list' %}?designer={{ product.designer }}">{{ product.designer }}</a>
+                    </div>
+                    <h2 class="d3">{{ product.available_sizes.first.price|floatformat:-2 }} $</h2>
+                    <div class="product-short-description"><!-- {{ product.short_description|safe }} --></div>
+                </div>
+                <div class="product-order-container">
+                    <form id="product-order-form" class="product-order-form" action="{% url 'custom_products:ajax_validation_order_form' product.id %}" method="POST" novalidate>
+                        <label for="id_available_sizes">{{ _('Taille') }}</label>
+                        {% if order_form.available_sizes.field.choices %}
+                            <div class="product-order-size">
+                                {{ order_form.available_sizes|as_crispy_field }}
+                            </div>
+                        {% endif %}
+                        <input type="hidden" name="amount" value="1">
+                        <div class="product-order-add">
+                            <input type="submit" class="btn btn-black-outline" value="{% trans 'Add' %}"/>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="product-description">
+                     <!-- {{ product.description|safe }} -->
+                </div>
+
+                <div class="product-tag-container">
+                    {% for tag in product.tags.all %}
+                        <div class="product-tag">
+                            <img src="{{ tag.icon.url }}" alt="{{ tag.name }}">
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+        </section>
+        {% if related_products %}
+            <section class="related-products">
+                <div class="related-products-title">
+                    <h2>{% static_placeholder 'recommended products title' %}</h2>
+                </div>
+                <div class="product-container">
+                    <div class="product-card-container">
+                        <div class="product-row">
+                            {% for related_product in related_products %}
+                                <div class="col-sm-6 {% if related_product.product_images.all %} {% if related_product.product_images.first.image.width > related_product.product_images.first.image.height %}col-lg-6{% else %}col-lg-3{% endif %}{% endif %} product-card">
+                                    <a href="{% url 'products:single' related_product.slug %}">
+                                        <div class="product-card-image" {% if related_product.product_images.all %}style="background-image: url('{{ related_product.product_images.first.image.url }}')"{% endif %}>
+                                        </div>
+
+                                        <div class="product-card-title">
+                                            {{ related_product.title }}
+                                        </div>
+                                        <div class="product-card-description">
+                                            {{ related_product.short_description|striptags|truncatechars_html:35 }}
+                                        </div>
+                                        <div class="product-card-price">
+                                                {{ related_product.available_sizes.first.price| floatformat:-2 }} $<br>
+                                                <span class="fa fa-long-arrow-right"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    </main>
+
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
+
+<script src="{% static 'products/js/app.min.js' %}"></script>
+{% endblock %}

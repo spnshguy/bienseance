@@ -1,0 +1,7 @@
+{% load menu_tags %}
+
+{% for child in children %}
+	<div class="menu-link {% if child.selected %} selected{% endif %} col-md-4">
+		<a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
+	</div>
+{% endfor %}

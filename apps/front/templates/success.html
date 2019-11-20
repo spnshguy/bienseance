@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles cms_tags %}
+{% block body_class %}success_page{%endblock %}
+{% block content %}
+    <main>
+        <section id="" class="success_section">
+            <div class="sidepadding-container">
+                <div class="sidepadding-content success-content">
+                    <div class="success-title">
+                        <h1>{% trans 'Merci pour votre commande !' %}</h1>
+                    </div>
+                    <div class="success-message">
+                        <p class="success-text">
+                            {% blocktrans %}
+                                Merci d’avoir fait confiance à Bienséance et d’encourager la
+                                mode éthique montréalaise ! Une facture vous a été transmise
+                                par courriel à l’adresse : <span class="text-bold">{{customer_email}}</span>
+                            {% endblocktrans %}
+                        </p>
+                        <div class="success-btn">
+                            <a class="btn btn-black-outline" href="{% page_url 'home' %}">{% trans "Retour à l'accueil" %}</a>
+                        </div>
+                    </div>
+                    <div class="order-information">
+                        <div class="order-number">
+                            <span class="text-bold">{% trans 'Commande no.' %}: </span> {{transaction_id}}
+                        </div>
+                        <div class="order-status">
+                            <span class="text-bold">{% trans 'Statut' %}</span> : En cours de traitement
+                        </div>
+                    </div>
+                    <div class="extra_details">
+                        <em>
+                            * Veuillez noter que ce paiement s’affichera sur votre relevé
+                            bancaire sous le nom de : <span class="text-bold">SQ *BIENSEANCE gosq.com PQ</span>
+                        </em>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load staticfiles cms_tags sekizai_tags hijack_tags %}
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_tracking_id }}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{{ ga_tracking_id }}');
+        </script>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block open_graph %}
+            <meta property="og:site_name" content="Bienseance"/>
+            <meta property="og:image" content="{% static 'social-network.png'%}" />
+        {% endblock %}
+        <!-- Bootstrap CSS -->
+        <link href="//fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i|Karla:400,400i,700,700i" rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+        {% render_block "css" %}
+        <link rel="stylesheet" href='{% static "css/main.css" %}?v=2'>
+        <!--<link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+        <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
+        {% block extra_css %}{% endblock %}
+
+        <title>{% block title %}Bienseance{% endblock %}</title>
+    </head>
+    <head>
+    <body class="{% block body_class %}{% endblock %}">
+
+    {% cms_toolbar %}
+    {% hijack_notification %}
+    {% load static %}
+
+
+    {% block header %}
+        {% include '_header.html' %}
+    {% endblock %}
+
+    {% block sidebar %}
+        {% include '_sidebar.html' %}
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+        {% include '_footer.html' %}
+    {% endblock %}
+
+
+
+    {% render_block "js" %}
+
+    {% block extra_js %}
+        <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- custom script -->
+        <script src="{% static 'js/app.min.js' %}"></script>
+    {% endblock %}
+    {% block extra_modal %}{% endblock %}
+    </body>
+</html>

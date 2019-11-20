@@ -1,0 +1,23 @@
+<div class="event-card">
+    <div class="event-title">
+        <div class="event-name">
+            <span>
+                <strong>{{ instance.title }}</strong>
+            </span>
+        </div>
+        <div class="event-dates">
+            <span>
+                <strong>{{ instance.date_range }}</strong>
+            </span>
+        </div>
+    </div>
+    <div class="event-location">
+        <span class="fa fa-angle-right angle-icon"></span>
+        <div class="event-location-content">
+            {{ instance.location|safe }}
+        </div>
+    </div>
+    <div class="event-time">
+        {{ instance.time }}
+    </div>
+</div>

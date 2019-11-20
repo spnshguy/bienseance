@@ -1,0 +1,26 @@
+
+{% if instance.social_network == instance.FACEBOOK %}
+    <li class="hside-social-item">
+        <a class="hside-social-link custom-social" href="{{ instance.url }}" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </li>
+{% elif instance.social_network == instance.LINKEDIN %}
+    <li class="hside-social-item">
+        <a class="hside-social-link custom-social" href="{{ instance.url }}" target="_blank">
+            <i class="fa fa-linkedin"></i>
+        </a>
+    </li>
+{% elif instance.social_network == instance.INSTAGRAM %}
+    <li class="hside-social-item">
+        <a class="hside-social-link custom-social" href="{{ instance.url }}" target="_blank">
+            <i class="fa fa-instagram"></i>
+        </a>
+    </li>
+{% elif instance.social_network == instance.TWITTER %}
+    <li class="hside-social-item">
+        <a class="hside-social-link custom-social" href="{{ instance.url }}" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </li>
+{% endif %}

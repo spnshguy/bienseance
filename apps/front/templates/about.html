@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load sekizai_tags i18n staticfiles cms_tags menu_tags %}
+{% block title %}{% page_attribute page_title %}{% endblock %}
+
+{% block content %}
+    <main id="about">
+        <section id="hero-section" class="about-hero">
+            <div class="container hero-container">
+                <div class="row">
+                    <div class="hero-dbl-container">
+                        <h1 class="d1-alt">
+                            {% placeholder 'hero_title' %}
+                        </h1>
+                        <p class="hero-text">
+                            {% placeholder 'hero_text' %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

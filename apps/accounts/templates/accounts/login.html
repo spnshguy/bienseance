@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles crispy_forms_filters %}
+
+{% block body_class %}body-full-height{% endblock %}
+{% block content %}
+    <main>
+        <section class="login-section">
+            <form class="form-signin" action="{% if next_url %}?next={{ next_url }}{% endif %}" method="post" id="login-form" novalidate>
+                {% csrf_token %}
+                {{ login_form.username|as_crispy_field }}
+                {{ login_form.password|as_crispy_field }}
+                <button class="btn btn-primary btn-block btn-login-submit" type="submit">{% trans 'Log in' %}</button>
+            </form>
+        </section>
+    </main>
+{% endblock %}

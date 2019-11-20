@@ -1,0 +1,18 @@
+{% load i18n staticfiles cms_tags menu_tags %}
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-container">
+        <a href="{% url 'products:get_cart' %}" class="fa fa-shopping-cart big-icon margin-bot-md"></a>
+        {% if latest_magazine %}
+            <a href="{% url 'products:magazine_single' latest_magazine.slug %}" class="magazine-link">
+                <span>001</span>
+                <span class="bar"></span>
+                <span>Magazine</span>
+                <span class="fa fa-long-arrow-right rotate-90"></span>
+            </a>
+        {% endif %}
+        <div class="social-networks">
+            <a href="https://www.instagram.com/bienseance.n.f/" class="fa fa-instagram" target="_blank"></a>
+            <a href="https://www.facebook.com/bienseance.n.f" class="fa fa-facebook" target="_blank"></a>
+        </div>
+    </div>
+</nav>

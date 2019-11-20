@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles cms_tags %}
+{% block content %}
+    <main id="blog_list">
+        <section id="hero-section" class="page-hero ressources-hero">
+            <h1 class="d1-alt hero-title">
+                {% placeholder 'hero_title' %}
+            </h1>
+            <p class="hero-text">
+                {% placeholder 'hero_text' %}
+            </p>
+        </section>
+        <section class="fashion-section">
+            <div class="fashion-container">
+                <div class="fashion-card-container">
+                    {% for blog in blogs %}
+                        <div class="col-sm-6 col-md-4 fashion-card">
+                            <a href="{% url 'blogs:single' blog.slug %}">
+                                <div class="fashion-card-image" style="background-image:url('{% if blog.images.all %}{{ blog.images.first.image.url }}{% endif %}')">
+                                </div>
+                                <div class="text-right">
+                                    <h4 class="fashion-card-title">{{ blog.title }}</h4>
+                                </div>
+                                <div class="fashion-card-description">
+                                    {{ blog.short_description|striptags|truncatechars_html:90 }}
+                                </div>
+                                <div class="text-right margin-right-20">
+                                    <span class="fa fa-long-arrow-right"></span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if blogs.has_other_pages %}
+                <div class="fashion-pagination-container">
+                    <div class="pagination">
+                        <span class="step-links">
+                            <div class="pages">
+                                {% for pg in page_range %}
+                                    {% if pg < blogs.number %}
+                                        {% if forloop.first %}
+                                            <a href="?page={{pg}}" class="pagination-page fa fa-chevron-left"></a>
+                                            <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                                        {%else %}
+                                            <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                                        {% endif %}
+                                    {% elif products.number == pg %}
+                                        <span class="current pagination-page">{{pg}}</span>
+                                    {% else %}
+                                        {% if forloop.last %}
+                                            <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                                            <a href="?page={{pg}}" class="pagination-page fa fa-chevron-right"></a>
+                                        {% else %}
+                                            <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+{% endblock %}

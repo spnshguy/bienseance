@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load cms_tags front %}
+{% block content %}
+    <main>
+        <section class="default-section">
+            <div class="cms-content">
+                {% placeholder 'page content' %}
+            </div>
+        </section>
+        {% include '_newsletter_section.html' %}
+    </main>
+{% endblock %}

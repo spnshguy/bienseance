@@ -1,0 +1,14 @@
+version: '2.1'
+services:
+  gulp:
+    build: ./gulp
+    volumes:
+      - .:/bienseance
+      - /bienseance/gulp/node_modules
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    restart: always
+    command: gulp browsersync
+volumes:
+  data:

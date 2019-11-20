@@ -1,0 +1,125 @@
+.home-hero {
+
+    min-height: 480px;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+
+    @include breakpoint(sm){
+        min-height: 500px;
+        margin-right: 80px;
+        .hero-title {
+            margin-bottom: 20px;
+        }
+    }
+    @include breakpoint(lg){
+        min-height: 730px;
+    }
+    .hero-container {
+        width: 100%;
+        color: $white;
+        padding: 130px 50px 50px 50px;
+
+        @include breakpoint(sm){
+            padding: 60px;
+        }
+
+        h1 {
+            color: $white;
+        }
+        .hero-text {
+            @include breakpoint(sm) {
+                width: 50%;
+            }
+        }
+    }
+
+}
+
+.page-hero{
+    @extend .home-hero;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    @include breakpoint(sm){
+        padding: 200px 25px;
+        flex-direction: row;
+    }
+
+
+
+    &.ressources-hero {
+        @include breakpoint(sm){
+            padding: 0px 25px;
+            flex-direction: row;
+        }
+    }
+    &.product-hero {
+        margin-left: 50px;
+        margin-right: 50px;
+
+
+        @include breakpoint(sm){
+            padding: 100px 25px;
+            flex-direction: row;
+        }
+    }
+
+
+    &.contact-hero {
+        color: $black;
+        @include breakpoint(md){
+            padding: 0;
+            margin: 100px 140px;
+        }
+        @include breakpoint(lg){
+            margin-right: 300px;
+        }
+        @include breakpoint(xl){
+            margin-left: 200px;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+            @include breakpoint(sm){
+                margin: 60px 0px 0 50px;
+                text-align: right;
+            }
+            @include breakpoint(md){
+                margin: 60px 0 0 50px;
+            }
+
+        }
+        .hero-content {
+            margin: 0 80px;
+            margin-top: 20px;
+
+
+           .hero-title {
+                text-align: left;
+                margin-bottom: 20px;
+           }
+        }
+    }
+
+    .hero-title {
+        color: $black;
+        margin: 0 50px;
+        margin-bottom: 25px;
+        @include breakpoint(sm) {
+            text-align: right;
+            padding-right: 40px;
+        }
+        &.coming-soon-title {
+            margin: 0;
+        }
+    }
+    .hero-text {
+        max-width: 500px;
+        width: 100%;
+        margin-top: 25px;
+    }
+}

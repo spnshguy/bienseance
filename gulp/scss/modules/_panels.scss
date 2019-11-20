@@ -1,0 +1,48 @@
+.panel-group {
+  .panel-default {
+    border: none;
+    > .panel-heading{
+      padding: 0;
+      border: none;
+      background-color: $dark-grey;
+      a {
+        padding: 30px 20px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 22px;
+        color: $white;
+        position: relative;
+        z-index: 1;
+        &:before {
+          content: "";
+          display: block;
+          background-color: $main-color;
+          position: absolute;
+          top: 0; right: 0 ; bottom: 0; left: 0;
+          z-index: -1;
+          transform-origin: center bottom;
+          transform: scaleY(0);
+          //@include transition(400ms cubic-bezier(0.645, 0.045, 0.355, 1));
+        }
+        &:hover:before {
+          transform: scaleY(1);
+        }
+      }
+      + .panel-collapse {
+        >.panel-body {
+          padding: 45px 35px;
+          ol {
+            margin-top: 20px;
+            line-height: 25px;
+            &:not(:last-child) {
+              margin-bottom: 40px;
+            }
+          }
+        }
+      }
+    }
+    + .panel {
+      margin-top: 25px;
+    }
+  }
+}

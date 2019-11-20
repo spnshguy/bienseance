@@ -1,0 +1,24 @@
+{% load i18n crispy_forms_filters %}
+<form id="contact_form" class="contact-form" action="{% url 'home:ajax_validate_contact_form' %}" method="POST" data-prefix="contact" novalidate>
+    {% csrf_token %}
+    <div id="div_id_contact-name" class="form-group name-input-container">
+        <label for="id_name" class="control-label requiredField">
+            {{ contact_form.name }}
+            <span class="input-label">{{ contact_form.name.label }}</span>
+        </label>
+    </div>
+    <div id="div_id_contact-email" class="form-group">
+        <label for="id_email" class="control-label requiredField">
+            {{ contact_form.email }}
+            <span class="input-label">{{ contact_form.email.label }}</span>
+        </label>
+    </div>
+    <div id="div_id_contact-message" class="form-group">
+        <label for="id_message" class="control-label requiredField">
+            {{ contact_form.message }}
+            <span class="input-label">{{ contact_form.message.label }}</span>
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-black-outline btn-submit">{% trans 'Soumettre' %}</button>
+</form>

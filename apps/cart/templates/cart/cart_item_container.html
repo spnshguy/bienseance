@@ -1,0 +1,54 @@
+{% load i18n %}
+
+{% for item in cart %}
+    <form method="POST" action="{% url 'cart:ajax_update_cart_item' %}" class="cart-item-form">
+        {% csrf_token %}
+        <div class="product">
+            <div class="product-image">
+                <img src="{{ item.product.product_images.first.image.url }}">
+            </div>
+            <div class="product-info">
+                <div class="product-title">
+                    <strong>{{ item.product.title }}</strong>
+                    {% if item.selected_size %}<br><div class="product-line-size">{{ item.selected_size }}</div>{% endif %}
+                </div>
+
+                <div class="product-line-price">{{ item.unit_price|floatformat:-2 }}&nbsp;$</div>
+                <div class="product-item">
+                    <div class="product-management">
+                        <div class="product-quantity">
+                                <input type="number" class="item-quantity" name="item_quantity" value="{{ item.quantity }}" min="1">
+                                <input type="hidden" name="item_product" value="{{ item.product.id }}">
+                                <input type="hidden" name="item_size" value="{{ item.selected_size.id }}">
+                        </div>
+
+                    </div>
+                    <div class="product-removal">
+                        <a href="#" class="remove-product btn btn-black-outline" data-url="{% url 'cart:ajax_remove_item' item.product.id %}?item_size={{ item.selected_size.id }}">
+                            {% trans 'Retirer' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endfor %}
+
+<div class="cart-total">
+    <div class="totals-item">
+        <div class="totals-value" id="cart-subtotal">{% trans 'Subtotal' %}: {{ cart.subtotal|floatformat:2 }} $</div>
+    </div>
+    <div class="totals-item">
+        <div class="totals-value" id="cart-tax-tps">{% trans 'TPS (5 %)' %}: {{ cart.tps|floatformat:2 }} $</div>
+    </div>
+    <div class="totals-item">
+        <div class="totals-value" id="cart-tax-tvq">{% trans 'TVQ (9.975 %)' %}: {{ cart.tvq|floatformat:2 }} $</div>
+    </div>
+    <div class="totals-item">
+        <div class="totals-value" id="cart-shipping">{% trans 'Shipping' %}: {{ cart.shipping|floatformat:2 }} $</div>
+    </div>
+    <div class="totals-item totals-item-total">
+        <div class="totals-value" id="cart-total">{% trans 'Total' %}: {{ cart.total|floatformat:2 }} $</div>
+    </div>
+    <a href="/boutique/cart_checkout/" class="checkout btn btn-black-outline">{% trans 'Checkout' %}</a>
+</div>

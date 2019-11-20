@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles %}
+{% block content %}
+    <main>
+        <section class="shopping-cart">
+            {% if cart.count %}
+                {% include 'cart/cart_item_container.html' %}
+            {% else %}
+                {% include 'cart/empty.html' %}
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'cart/js/app.min.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.scss"],"names":[],"mappings":"AAAA,mBACE,WAAY,iCAAiC,EAAE,EAAE,oBAEnD,yBAEI,QAAQ","file":"admin.css","sourcesContent":[".inline-deletelink {\n  background: url(../../img/inline-delete.svg) 0 0 no-repeat!important;\n}\n.form-row {\n  &.field-position {\n    display:none;\n  }\n}"]}

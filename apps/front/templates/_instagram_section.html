@@ -1,0 +1,20 @@
+{% load staticfiles instagram_client %}
+
+<section class="instagram-images-section">
+    <div class="image-container wrap column nospace">
+        {% instagram_user_recent_media bienseance.n.f %}
+        {% for media in recent_media|slice:":6" %}
+            <a href="//instagram.com/p/{{ media.shortcode }}" target="_blank" class="instagram-link">
+                <div class="instagram-image-card" style="background-image: url('{{ media.thumbnail_src }}')">
+                    <span class="container-absolute">
+                        <span class="instagram-info">
+                            <span class="instagram-likes"><i class="fa fa-heart"></i> {{ media.edge_liked_by.count }}</span>
+                            <span class="instagram-comments"><i class="fa fa-commenting-o"></i> {{ media.edge_media_to_comment.count }}</span>
+                        </span>
+                      </span>
+                    </span>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles cms_tags crispy_forms_filters %}
+{% block content %}
+    <main>
+        <section class="product-content-section flex-dbl-row">
+            <div class="product-col-left">
+                <div class="product-image-container">
+                    {% for image in magazine.product_images.all %}
+                        <div class="product-image">
+                            <img src="{{ image.image.url }}" alt="{{ image.image.name }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="product-col-right">
+                <div class="product-header">
+                    <h1>{{ magazine.title }}</h1>
+                    <h2 class="d3">{{ magazine.available_sizes.first.price|floatformat:-2 }} $</h2>
+                    <div class="product-short-description">{{ magazine.short_description|safe }}</div>
+                </div>
+                <div class="product-order-container">
+                        <div class="product-order-add">
+                            <a href="/cart/mk_cart_magazine/?sku={{magazine.available_sizes.first.sku}}&id={{magazine.id}}" class="btn btn-black-outline">{% trans 'Add' %}</a>
+                        </div>
+                </div>
+
+                <div class="product-description">
+                    {{ magazine.description|safe }}
+                </div>
+                <div class="product-tag-container">
+                    {% for tag in magazine.tags.all %}
+                        <div class="product-tag">
+                            <img src="{{ tag.icon.url }}" alt="{{ tag.name }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+        {% if related_products %}
+            <section class="related-products">
+                <div class="related-products-title">
+                    <h2>{% static_placeholder 'recommended products title' %}</h2>
+                </div>
+                <div class="product-container">
+                    <div class="product-card-container">
+                        <div class="product-row">
+                            {% for related_magazine in related_magazines %}
+                                <div class="col-sm-6 {% if related_magazine.product_images.first.image.width > related_magazine.product_images.first.image.height %}col-lg-6{% else %}col-lg-3{% endif %} product-card">
+                                    <a href="{% url 'products:single' related_magazine.slug %}">
+                                        <div class="product-card-image">
+                                            <img src="{{ related_magazine.product_images.first.image.url }}" alt="{{ related_magazine.product_images.first.image.name }}">
+                                        </div>
+                                        <div class="product-card-title">
+                                            {{ related_magazine.title }}
+                                        </div>
+                                        <div class="product-card-description">
+                                            {{ related_magazine.short_description|striptags|truncatechars_html:35 }}
+                                        </div>
+                                        <div class="product-card-price">
+                                                {{ related_magazine.available_sizes.first.price|floatformat:-2 }} $<br>
+                                        <span class="fa fa-long-arrow-right"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    </main>
+
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
+
+<script src="{% static 'products/js/app.min.js' %}"></script>
+{% endblock %}

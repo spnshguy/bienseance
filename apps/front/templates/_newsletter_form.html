@@ -1,0 +1,6 @@
+{% load i18n crispy_forms_filters %}
+<form id="newsletter_form" class="newsletter-form" action="{% url 'home:ajax_validate_newsletter_form' %}" method="POST" data-prefix="newsletter" novalidate>
+    {% csrf_token %}
+    {{ newsletter_form.email| as_crispy_field }}
+    <button type="submit" class="btn btn-black-outline btn-submit">{% trans 'Soumettre' %}</button>
+</form>

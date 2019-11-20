@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles cms_tags %}
+
+
+{% block body_class %}error-page{% endblock %}
+{% block title %}
+    {% trans 'Page Not Found' %}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section id="" class="sidepadding-section-sm">
+            <div class="sidepadding-container w-box-shadow">
+                <div class="sidepadding-content error-content">
+                    <h1 class="error-title">500</h1>
+                    <div class="error-message">
+                        <h2 class="error-subtitle">Oups,</h2>
+                        <p class="error-text">
+                            {% blocktrans %}
+                                une erreur inattendue s'est produite, veuillez réessayer plus tard
+                            {% endblocktrans %}
+                        </p>
+                        <div class="error-btn">
+                            <a class="btn btn-black-outline" href="{% page_url 'home' %}">{% trans "Retour à l'accueil" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

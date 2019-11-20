@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles cms_tags %}
+{% block body_class %}success_page{%endblock %}
+{% block content %}
+    <main>
+        <section id="" class="success_section">
+            <div class="sidepadding-container">
+                <div class="sidepadding-content success-content">
+                    <div class="success-title">
+                        <h1>{% trans 'Commande échouée' %}</h1>
+                    </div>
+                    <div class="success-message">
+                        <p class="success-text">
+                            {% page_url 'about' as url %}
+                            {% blocktrans %}
+                                  Votre transaction n'a pas pu être traitée pour le moment. Veuillez réessayer ou <a href="{{ url }}#contact" class="text-bold">utilisez notre formulaire de contact</a> pour de l'assistance.  Vous pouvez également nous envoyer un email à: <span class="text-bold"><a href="mailto:info@bienseance.ca">info@bienseance.ca</a></span>.
+                            {% endblocktrans %}
+                        </p>
+                        <p class="error-message">{{error_info.message}}</p>
+                        <div class="success-btn">
+                            <a class="btn btn-black-outline" href="{% page_url 'home' %}">{% trans "Retour à l'accueil" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

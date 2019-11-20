@@ -1,0 +1,52 @@
+<div class="product-card-container">
+    {% for product in products %}
+        <div class="col-sm-6 {% if product.product_images.first.image.width > product.product_images.first.image.height %}col-lg-6{% else %}col-lg-3{% endif %} product-card">
+
+            <a href="{% url 'products:magazine_single' product.slug %}">
+                <div class="product-card-image">
+                    <img src="{{ product.product_images.first.image.url }}" alt="{{ product.product_images.first.image.url.name }}">
+                </div>
+                <div class="product-card-title">
+                    {{ product.title }}
+                </div>
+                <div class="product-card-description">
+                    {{ product.short_description|striptags|truncatechars_html:35}}
+                </div>
+                <div class="product-card-price">
+                    {{ product.available_sizes.first.price|floatformat:-2 }} $<br>
+                    <span class="fa fa-long-arrow-right"></span>
+                </div>
+
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% if products.has_other_pages %}
+    <div class="product-pagination-container">
+        <div class="pagination">
+            <span class="step-links">
+                <div class="pages">
+                    {% for pg in page_range %}
+                        {% if pg < products.number %}
+                            {% if forloop.first %}
+                                <a href="?page={{pg}}" class="pagination-page fa fa-chevron-left"></a>
+                                <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                            {%else %}
+                                <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                            {% endif %}
+                        {% elif products.number == pg %}
+                            <span class="current pagination-page">{{pg}}</span>
+                        {% else %}
+                            {% if forloop.last %}
+                                <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                                <a href="?page={{pg}}" class="pagination-page fa fa-chevron-right"></a>
+                            {% else %}
+                                <a href="?page={{pg}}" class="pagination-page">{{pg}}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </span>
+        </div>
+    </div>
+{% endif %}

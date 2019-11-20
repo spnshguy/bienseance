@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load sekizai_tags i18n staticfiles cms_tags menu_tags front %}
+{% block title %}{% page_attribute page_title %}{% endblock %}
+
+{% block body_class %}page-header-overlap{% endblock %}
+
+{% block content %}
+    <main id="home">
+        {% get_placeholder 'Hero Background Image' as "background_image" %}
+        {% if request.toolbar.edit_mode %}
+            <div style="display: none">{{ background_image }}</div>
+        {% endif %}
+        <section id="hero-section" class="home-hero bg-grey"
+                 {% if not request.toolbar.edit_mode %}style="background-image: url('{{ background_image }}')"{% endif %}>
+            <div class="hero-container">
+                {% placeholder 'hero_title' %}
+                <div class="hero-text">
+                    {% placeholder 'hero_text' %}
+                </div>
+            </div>
+        </section>
+        {% if featured_products %}
+            <section class="product-section">
+                <div class="container">
+                    <div class="row product-section-header">
+                        <div class="col-sm-6 product-header-left">
+                            <h2>{% placeholder 'product section title' %}</h2>
+                            <span>
+                                {% placeholder 'product section date range' %}
+                            </span>
+                        </div>
+                        <div class="col-sm-6 product-header-right">
+                            <span>{% placeholder 'product section invited designers' %}</span>
+                        </div>
+                    </div>
+                    <div class="row product-card-container">
+                        {% for featured_product in featured_products %}
+                            <div class="col-sm-6 {% if featured_product.product_images.first.image.width > featured_product.product_images.first.image.height %}col-lg-6{% else %}col-lg-3{% endif %}  product-card">
+                                <a href="{% url 'products:single' featured_product.slug %}">
+                                    <div class="product-card-image" style="background-image:url('{{ featured_product.product_images.first.image.url }}')">
+
+                                    </div>
+                                    <div class="product-card-title">
+                                        {{ featured_product.title }}
+                                    </div>
+                                    <div class="product-card-description">
+                                        {% if featured_product.short_description %}
+                                            <span>{{ featured_product.short_description|striptags|truncatechars_html:35|safe }}</span><br>
+                                        {% endif %}
+                                        <span class="product-price">{{ featured_product.available_sizes.first.price }}$</span><br>
+                                        <span class="fa fa-long-arrow-right"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        {% if featured_blogs %}
+            <section class="fashion-section bg-grey">
+                <div class="fashion-container">
+                    <div class="fashion-header">
+                        <div class="col-md-4 fashion-section-title">
+                            <h2>{% placeholder 'fashion section title' %}</h2>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="section-description">{% placeholder 'fashion section text' %}</div>
+                        </div>
+                    </div>
+                    <div class="row fashion-body">
+                        {% for blog in featured_blogs %}
+                            <div class="col-md-4 fashion-card">
+                                <a href="{% url 'blogs:single' blog.slug %}">
+                                    <div class="fashion-card-image"{% if blog.images.first %} style="background-image: url('{{ blog.images.first.image.url }}')"{% endif %}>
+                                    </div>
+                                    <h4 class="fashion-card-title text-right margin-right-20">{{ blog.title }}</h4>
+                                    <div class="fashion-card-description">
+                                        {{ blog.content|striptags|truncatechars_html:95|safe }}
+                                    </div>
+                                    <div class="text-right margin-right-20">
+                                        <span class="fa fa-long-arrow-right"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        <section class="contact-section">
+            <div class="contact-us">
+                <h2 class="contact-section-title">{% placeholder 'Contact Section Title' %}</h2>
+                <div class="section-body-text">
+                    {% placeholder 'Contact Section Text' %}
+                </div>
+                {% placeholder 'Contact Section button' %}
+
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block extra_modal %}
+    <div class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

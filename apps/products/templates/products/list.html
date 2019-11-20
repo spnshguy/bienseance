@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles cms_tags crispy_forms_filters %}
+{% block content %}
+    <main id="product_list">
+        <section id="hero-section" class="page-hero product-hero">
+            <h1 class="d1-alt hero-title">
+                {% placeholder 'hero_title' %}
+            </h1>
+            <p class="hero-dates">{% placeholder 'hero dates text' %}</p>
+            <p class="hero-text">
+                {% placeholder 'hero_text' %}
+            </p>
+        </section>
+        <section class="product-section">
+            <div class="product-container">
+                <div class="product-filter-container">
+                    <form id="product_filter_form" class="product_filter_form" action="{% url 'custom_products:ajax_product_filter' %}" method="POST">
+                        {% csrf_token %}
+                        {{ product_filter_form.order| as_crispy_field }}
+                        {{ product_filter_form.designer| as_crispy_field }}
+                        {{ product_filter_form.tag| as_crispy_field }}
+                    </form>
+                </div>
+                <div class="product_listing product_list">
+                    {% include 'products/_product_card_container.html' %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'products/js/app.min.js' %}"></script>
+{% endblock %}

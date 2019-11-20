@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles front cms_tags %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="page-hero contact-hero">
+            <div class="contact-info">
+                {% placeholder 'Hero contact info' %}
+            </div>
+            <div class="hero-content">
+                <div class="hero-title">
+                    <h1>
+                        {% placeholder 'Hero title' %}
+                    </h1>
+                </div>
+                <div class="hero-description">
+                    {% placeholder 'Hero description' %}
+                </div>
+            </div>
+        </section>
+        <section class="flex-dbl-row contact-information-section">
+
+            <div class="flex-row-left">
+                <div class="contact-image">
+                    {% placeholder 'Page image' %}
+                </div>
+            </div>
+            <div class="flex-row-right">
+                {% placeholder 'column right text' %}
+            </div>
+        </section>
+        <section id="contact" class="contact-form-section">
+
+            <div class="contact-form-title">
+                <h2>{% placeholder 'contact form title' %}</h2>
+            </div>
+            <div class="contact-form-container">
+                {% contact_form %}
+            </div>
+
+        </section>
+        {% include '_instagram_section.html' %}
+        {% include '_newsletter_section.html' %}
+    </main>
+{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+{% endblock %}

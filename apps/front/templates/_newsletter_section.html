@@ -1,0 +1,12 @@
+{% load cms_tags front %}
+<section class="newsletter-section bg-grey">
+    <div class="newsletter-title">
+        <h2>{% static_placeholder 'Newsletter title' %}</h2>
+    </div>
+    <div class="newsletter-content">
+        {% static_placeholder 'Newsletter content' %}
+    </div>
+    <div class="newsletter-form-container">
+        {% newsletter_form %}
+    </div>
+</section>
