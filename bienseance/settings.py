@@ -60,7 +60,7 @@ INSTALLED_APPS = (
 )
 from django.utils.translation import ugettext_lazy as _
 
-ALLOWED_HOSTS = os.environ.get('BIEN_ALLOWED_HOSTS', '127.0.0.1,0.0.0.0,localhost,192.168.2.27,192.168.2.22,192.168.0.118')
+ALLOWED_HOSTS = os.environ.get('BIEN_ALLOWED_HOSTS', '127.0.0.1,0.0.0.0,localhost')
 ALLOWED_HOSTS = ALLOWED_HOSTS.split(',')
 
 ADMINS = (
